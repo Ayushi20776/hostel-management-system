@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+
+    <h2 class="text-center mb-4">💰 Fee Payment</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Student</label>
+            {{ form.student }}
+        </div>
+
+        <div class="mb-3">
+            <label>Amount</label>
+            {{ form.amount }}
+        </div>
+
+        <div class="mb-3">
+            <label>Payment Method</label>
+            <select name="payment_method" class="form-control">
+                <option>UPI</option>
+                <option>Card</option>
+                <option>Cash</option>
+            </select>
+        </div>
+
+        <div class="form-check mb-3">
+            {{ form.paid }} <label>Paid</label>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+            Pay Fee
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

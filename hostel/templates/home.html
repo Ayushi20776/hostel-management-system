@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center mb-4">
+    <h1>🏠 Hostel Dashboard</h1>
+</div>
+
+<div class="row text-center">
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white p-3">
+            <h4>Total Students</h4>
+            <h2>{{ students }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white p-3">
+            <h4>Total Rooms</h4>
+            <h2>{{ rooms }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white p-3">
+            <h4>Complaints</h4>
+            <h2>{{ complaints }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-white p-3">
+            <h4>Fees</h4>
+            <h2>{{ fees }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<h3 class="text-center">System Overview</h3>
+
+<canvas id="myChart"></canvas>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Students', 'Rooms', 'Complaints', 'Fees'],
+        datasets: [{
+            label: 'System Data',
+            data: [{{ students }}, {{ rooms }}, {{ complaints }}, {{ fees }}],
+            borderWidth: 1
+        }]
+    }
+});
+</script>
+
+{% endblock %}
